@@ -38,3 +38,21 @@ constructor(
     protocol = disclose(pad(32, "Echora:protocol:v2"));
 }
 
+// A member proves a hidden signal clears the public rule. Only an anonymous receipt is stored.
+export circuit mark_passed(): [] {
+    assert(disclose(live), "The window is paused");
+    assert(blockTimeLt(disclose(window_end)), "This window has ended");
+    assert(disclose(accepted) < disclose(capacity), "Window capacity reached");
+
+    const signal = read_private_signal();
+    assert(signal >= signal_threshold, "Private signal does not meet the rule");
+
+    const phrase = read_secret_phrase();
+    const receipt = make_receipt_nullifier(phrase, passport);
+    assert(!spent_receipts.member(disclose(receipt)), "This private pass has already been used");
+
+    spent_receipts.insert(disclose(receipt));
+    receipt_index.insert(disclose(receipt), disclose(passport));
+    accepted.increment(1);
+}
+
