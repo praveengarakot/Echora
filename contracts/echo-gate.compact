@@ -1,0 +1,40 @@
+pragma language_version >=0.22.0;
+
+import CompactStandardLibrary;
+
+// Echora keeps the rule and the outcome public while private eligibility stays in a witness.
+export ledger signal_threshold: Uint<64>;
+export ledger passport: Bytes<32>;
+export ledger window_end: Uint<64>;
+export ledger issuer_tag: Bytes<32>;
+export ledger operator_commitment: Bytes<32>;
+export ledger live: Boolean;
+export ledger accepted: Counter;
+export ledger capacity: Uint<32>;
+export ledger spent_receipts: Set<Bytes<32>>;
+export ledger receipt_index: Map<Bytes<32>, Bytes<32>>;
+export sealed ledger protocol: Bytes<32>;
+
+// These callbacks are private inputs. Their values remain inside the proof circuit.
+witness read_private_signal(): Uint<64>;
+witness read_secret_phrase(): Bytes<32>;
+witness operator_secret(): Bytes<32>;
+
+constructor(
+    threshold: Uint<64>,
+    pass: Bytes<32>,
+    deadline: Uint<64>,
+    issuer: Bytes<32>,
+    operator_hash: Bytes<32>,
+    limit: Uint<32>
+) {
+    signal_threshold = disclose(threshold);
+    passport = disclose(pass);
+    window_end = disclose(deadline);
+    issuer_tag = disclose(issuer);
+    operator_commitment = disclose(operator_hash);
+    live = disclose(true);
+    capacity = disclose(limit);
+    protocol = disclose(pad(32, "Echora:protocol:v2"));
+}
+
