@@ -56,3 +56,33 @@ export circuit mark_passed(): [] {
     accepted.increment(1);
 }
 
+// Operator controls use a private secret checked against a public commitment.
+export circuit rotate_window(
+    new_threshold: Uint<64>,
+    new_pass: Bytes<32>,
+    new_deadline: Uint<64>,
+    new_issuer: Bytes<32>,
+    new_limit: Uint<32>
+): [] {
+    const secret = operator_secret();
+    assert(operator_commitment == operator_public_key(secret), "Operator authorization failed");
+    signal_threshold = disclose(new_threshold);
+    passport = disclose(new_pass);
+    window_end = disclose(new_deadline);
+    issuer_tag = disclose(new_issuer);
+    capacity = disclose(new_limit);
+    live = disclose(true);
+}
+
+export circuit pause_window(): [] {
+    const secret = operator_secret();
+    assert(operator_commitment == operator_public_key(secret), "Operator authorization failed");
+    live = disclose(false);
+}
+
+export circuit resume_window(): [] {
+    const secret = operator_secret();
+    assert(operator_commitment == operator_public_key(secret), "Operator authorization failed");
+    live = disclose(true);
+}
+
