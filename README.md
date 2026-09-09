@@ -48,3 +48,5 @@ A receipt is a public replay guard, not an identity record. Reusing the same phr
 
 The shipped Signal Gate uses an editable browser value as a **demo witness**. It proves only that the supplied value clears the rule; it does not prove that the value came from an issuer or credential. A production deployment must replace that input with a credential or attestation adapter. The browser also delegates proof generation to the connected wallet/prover service, so operators should choose a trusted wallet and understand its metadata policy. The ZK circuit does not publish the witness values, but transaction existence, timing, circuit shape and public ledger changes remain observable.
 
+
+<!-- build-artifact-log: build(zkir): compile binary zkir format for mark_passed -->
