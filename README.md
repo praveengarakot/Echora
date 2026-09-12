@@ -56,3 +56,5 @@ The shipped Signal Gate uses an editable browser value as a **demo witness**. It
 <!-- build-artifact-log: build(keys): generate verification key for mark_passed circuit -->
 
 <!-- build-artifact-log: build(keys): generate zk keys for pause_window circuit -->
+
+<!-- build-artifact-log: build(keys): generate zk keys for resume_window circuit -->
