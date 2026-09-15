@@ -1,0 +1,27 @@
+{
+  "name": "echora",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "workspaces": ["frontend"],
+  "engines": { "node": ">=22.0.0" },
+  "scripts": {
+    "postinstall": "node scripts/patch-runtime.cjs",
+    "compile": "node scripts/compile-contract.mjs && node scripts/patch-runtime.cjs && npm run copy:managed",
+    "copy:managed": "node -e \"const fs = require('fs'); fs.rmSync('frontend/src/managed/contract', {recursive:true, force:true}); fs.rmSync('frontend/public/managed', {recursive:true, force:true}); fs.cpSync('contracts/managed/echo-gate/contract', 'frontend/src/managed/contract', {recursive:true}); fs.cpSync('contracts/managed/echo-gate', 'frontend/public/managed', {recursive:true})\"",
+    "test": "cross-env NODE_OPTIONS='--experimental-vm-modules' vitest run",
+    "test:local": "cross-env MIDNIGHT_NETWORK=local npm run test",
+    "test:preview": "cross-env MIDNIGHT_NETWORK=preview npm run test",
+    "test:preprod": "cross-env MIDNIGHT_NETWORK=preprod npm run test",
+    "env:up": "docker compose up -d --wait",
+    "env:down": "docker compose down",
+    "build": "npm run build -w echora-frontend && node --input-type=module -e \"import fs from 'node:fs'; fs.rmSync('dist', {recursive:true, force:true}); fs.cpSync('frontend/dist', 'dist', {recursive:true});\"",
+    "typecheck": "tsc --noEmit -p frontend/tsconfig.json",
+    "check": "npm run test && npm run typecheck && npm run build"
+  },
+  "dependencies": {
+    "@midnight-ntwrk/compact-runtime": "0.16.0",
+    "@midnight-ntwrk/midnight-js-contracts": "4.1.1",
+    "@midnight-ntwrk/midnight-js-http-client-proof-provider": "4.1.1",
+
+}
