@@ -1,0 +1,20 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 1120" role="img" aria-labelledby="title desc">
+  <title id="title">A threshold opening onto a coral horizon</title>
+  <desc id="desc">A warm editorial architectural drawing with a dark doorway, layered horizon and a small sun.</desc>
+  <rect width="900" height="1120" fill="#e8dfd0"/>
+  <path d="M0 720h900v400H0z" fill="#c9b8a1"/>
+  <path d="M0 802c172-65 324-58 480-5 151 51 259 36 420-28v351H0z" fill="#172331"/>
+  <path d="M0 899c178-49 317-40 459 6 165 54 270 38 441-20v235H0z" fill="#213849"/>
+  <circle cx="705" cy="348" r="64" fill="#e56d59"/>
+  <path d="M83 900V184h605v716H83z" fill="#24333c"/>
+  <path d="M181 900V287h409v613H181z" fill="#101a23"/>
+  <path d="M246 900V412h279v488H246z" fill="#e56d59"/>
+  <path d="M278 900V465h216v435H278z" fill="#0b141d"/>
+  <path d="M83 184 181 98h507l-83 86H83z" fill="#31434a"/>
+  <path d="M688 184v716h-98V184z" fill="#16242d"/>
+  <path d="m590 287 98-103v716l-98-83z" fill="#0b151e" opacity=".8"/>
+  <path d="M0 948h900" stroke="#e8dfd0" stroke-width="2" opacity=".7"/>
+  <path d="M41 1020h300M438 1020h170M677 1020h172" stroke="#e56d59" stroke-width="3"/>
+  <text x="42" y="76" fill="#172331" font-family="monospace" font-size="16" letter-spacing="4">A STUDY IN SELECTIVE LIGHT</text>
+  <text x="42" y="1072" fill="#e8dfd0" font-family="monospace" font-size="14" letter-spacing="3">THE THRESHOLD / 01</text>
+</svg>
