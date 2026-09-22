@@ -120,3 +120,5 @@ npm test
 `npm run compile` does three things: compiles `contracts/echo-gate.compact`, runs the runtime compatibility hook and copies the generated contract plus ZK assets into the frontend. A successful build leaves a populated `contracts/managed/echo-gate/` directory with `contract/`, `keys/` and `zkir/`.
 
 <!-- build-artifact-log: build(frontend): publish mark_passed zk keys in public directory -->
+
+<!-- build-artifact-log: build(frontend): publish pause_window zk keys in public directory -->
