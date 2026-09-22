@@ -124,3 +124,5 @@ npm test
 <!-- build-artifact-log: build(frontend): publish pause_window zk keys in public directory -->
 
 <!-- build-artifact-log: build(frontend): publish resume_window zk keys in public directory -->
+
+<!-- build-artifact-log: build(frontend): publish rotate_window zk keys in public directory -->
