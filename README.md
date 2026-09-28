@@ -119,10 +119,72 @@ npm test
 
 `npm run compile` does three things: compiles `contracts/echo-gate.compact`, runs the runtime compatibility hook and copies the generated contract plus ZK assets into the frontend. A successful build leaves a populated `contracts/managed/echo-gate/` directory with `contract/`, `keys/` and `zkir/`.
 
-<!-- build-artifact-log: build(frontend): publish mark_passed zk keys in public directory -->
+For the fast local development loop, use the compiler's skip-ZK option directly:
 
-<!-- build-artifact-log: build(frontend): publish pause_window zk keys in public directory -->
+```bash
+compact compile --skip-zk contracts/echo-gate.compact contracts/managed/echo-gate
+```
 
-<!-- build-artifact-log: build(frontend): publish resume_window zk keys in public directory -->
+Run the production checks together:
 
-<!-- build-artifact-log: build(frontend): publish rotate_window zk keys in public directory -->
+```bash
+npm run check
+```
+
+## Local network
+
+```bash
+npm run env:up
+npm run compile
+npm test
+npm run env:down
+```
+
+The Docker stack exposes the local node on `9944`, the indexer on `8088` and the proof server on `6300`. Local integration is separate from the deterministic contract tests so the default test command stays repeatable and does not require Docker.
+
+## Run the frontend
+
+```bash
+npm run dev -w echora-frontend
+```
+
+The Vite app serves generated ZK artifacts from `/managed`. Open the URL printed by Vite. The day/night control in the top bar persists the selected theme locally.
+
+## Wallet flow
+
+1. Install a Midnight-compatible browser wallet.
+2. Open **Operator console** and choose **Connect on Preview** when deploying a new contract.
+3. Approve the wallet connection and wait for the wallet to finish syncing.
+4. Keep the generated operator secret in a secure local password manager. It is stored only in this browser profile for the demo.
+5. Enter a signal threshold and capacity, then choose **Deploy new window**.
+6. Approve the transaction in the wallet. Echora uses `createUnprovenDeployTx` and `submitTxAsync`, so the predicted address is available without waiting for a slow indexer watcher.
+7. The deployment address is saved as `DEPLOYED_CONTRACT_ADDRESS` and its wallet network as `DEPLOYED_CONTRACT_NETWORK` in local storage, then shown with a copy action and explorer link. For a build-time address, use `VITE_CONTRACT_ADDRESS` and `VITE_NETWORK_ID`.
+8. Move the wallet to Preprod, update the address if needed, and use **Signal gate** for a member proof.
+9. Use **Public field** to inspect indexed state and the accepted receipt stream.
+
+The member flow supplies `read_private_signal` and `read_secret_phrase` as witness callbacks. `mark_passed` has no public arguments. The operator flow supplies `operator_secret` only as a witness when pausing, resuming or deploying.
+
+## Browser deployment details
+
+`frontend/src/pages/AdminPage.tsx` is the deployment portal required for a manual Preview / Preprod launch. It:
+
+- checks for a connected wallet before deployment;
+- compiles `EchoraContract` with `CompiledContract.make`;
+- loads the generated assets from `/managed`;
+- passes constructor arguments in the exact generated order:
+
+```text
+(threshold, pass, deadline, issuer, operator_hash, limit)
+```
+
+- uses `BigInt` for threshold, deadline and capacity;
+- submits through `createUnprovenDeployTx` and `submitTxAsync`;
+- stores the resulting address in `localStorage`;
+- provides a copyable address and explorer URL;
+- reports proving, wallet and submission errors in the UI.
+
+Before a real deployment, verify that these files are reachable in a browser:
+
+```text
+/managed/compiler/contract-info.json
+/managed/keys/mark_passed.prover
