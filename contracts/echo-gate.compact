@@ -86,3 +86,14 @@ export circuit resume_window(): [] {
     live = disclose(true);
 }
 
+export pure circuit operator_public_key(secret: Bytes<32>): Bytes<32> {
+    return persistentHash<Vector<2, Bytes<32>>>([pad(32, "echora:operator:v2"), secret]);
+}
+
+export pure circuit make_receipt_nullifier(phrase: Bytes<32>, pass: Bytes<32>): Bytes<32> {
+    return persistentHash<Vector<3, Bytes<32>>>([
+        pad(32, "echora:receipt:v2"),
+        phrase,
+        pass
+    ]);
+}

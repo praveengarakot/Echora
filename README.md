@@ -188,3 +188,79 @@ Before a real deployment, verify that these files are reachable in a browser:
 ```text
 /managed/compiler/contract-info.json
 /managed/keys/mark_passed.prover
+/managed/keys/mark_passed.verifier
+/managed/zkir/mark_passed.zkir
+```
+
+## Contract circuits
+
+| Circuit | Purpose | Public inputs | Private witnesses |
+|---|---|---|---|
+| `mark_passed` | Prove a hidden signal clears the rule and record a receipt | none | signal, phrase |
+| `rotate_window` | Change rule, passport, expiry, issuer and capacity | new configuration | operator secret |
+| `pause_window` | Pause new receipts | none | operator secret |
+| `resume_window` | Resume new receipts | none | operator secret |
+| `operator_public_key` | Domain-separated operator commitment | secret input to pure circuit | not stored |
+| `make_receipt_nullifier` | Domain-separated one-time receipt | phrase and passport | not stored |
+
+## CI/CD
+
+`.github/workflows/ci.yaml` is the required Level 3 workflow. Every push and pull request should:
+
+1. install Node 22;
+2. install Compact 0.31.0;
+3. run `npm ci`;
+4. compile the Compact source;
+5. execute the test suite;
+6. build the frontend.
+
+`.github/workflows/deploy.yaml` creates a build artifact when the owner manually pushes a release tag. Add the repository's CI badge and the passing workflow URL after the repository is initialized.
+
+## Level 1–4 cross-check
+
+This repository contains the implementation material. The owner must still complete the network and submission evidence marked **manual**.
+
+| Level | Code evidence | Manual evidence still required |
+|---|---|---|
+| 1 — New Moon | Compact source, generated managed directory, passing tests, setup docs and public/private explanation | Deploy to Preview or Preprod, paste the address, add compile/deploy screenshots, make 5 meaningful commits |
+| 2 — Waxing Crescent | Wallet connect/disconnect, wallet-selected session, browser proof call, observable public receipt and contract address storage | Deploy to Preprod, publish a live demo and one-minute wallet/proof video, make 8 meaningful commits |
+| 3 — First Quarter | Private Allowlist Access proposal, 5+ deterministic tests, CI workflow, polished frontend and public state reader | Add CI passing evidence, 3+ test screenshot, demo video, approval evidence and 10 meaningful commits |
+| 4 — Waxing Gibbous | Browser operator console, complete README, setup/usage docs, release workflow and day/night UI | Deploy a live MVP to Preprod, add public product profile, live demo/video/contract links and 15 meaningful commits |
+
+## Owner submission checklist
+
+- [ ] Initialize the public repository.
+- [ ] Make at least 15 meaningful commits across the four levels.
+- [ ] Deploy the current generated contract to Preview or Preprod.
+- [ ] Add the deployed contract address to the **Deployment evidence** section below.
+- [ ] Add a screenshot of successful compile output with circuits listed.
+- [ ] Add a screenshot of the deployed address.
+- [ ] Add a screenshot of 3 or more passing tests.
+- [ ] Add the live demo URL.
+- [ ] Add the one-minute demo video.
+- [ ] Add the public product profile.
+- [ ] Add UI screenshots.
+
+## Deployment evidence
+
+Fill this section after the manual deployment:
+
+```text
+Network: Preview / Preprod
+Contract address:
+Deployment transaction:
+Live demo:
+Demo video:
+Product profile:
+Compile screenshot:
+Test screenshot:
+Deployment screenshot:
+```
+
+## Design direction
+
+Echora uses a **signal garden** visual language: deep blue-hour surfaces, warm coral proof markers, mint witness indicators and small monospaced protocol labels. The interface avoids the usual all-neon crypto dashboard. It uses asymmetrical editorial spacing, soft instrument-panel cards, a compact navigation system and a single persistent day/night toggle. Motion is reserved for the orbit rings and proof loading state, with text status always present for reduced-motion users.
+
+## License
+
+MIT. See `LICENSE`.
