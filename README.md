@@ -5,8 +5,10 @@
 Echora is a privacy-first access window for Midnight Network. An operator publishes a rule, an expiry and a capacity. A member proves that a private signal clears the rule, while the signal, the phrase behind it and the source credential remain inside the proving session. The chain records only an anonymous, one-time receipt.
 
 **Product track:** Level 3 — Private Allowlist Access  
-**Network target:** Preview for browser deployment, Preprod for the public demo  
-**Status:** Source, generated ZK assets, frontend flow, tests and CI are ready. Contract deployment, screenshots, live hosting and repository history are intentionally left for the project owner.
+**Network target:** Preprod  
+**Live Demo:** [https://echoramid.netlify.app/](https://echoramid.netlify.app/)  
+**Contract (Preprod):** [`1ea71c5f099f7e929d95d54beafc349c82defc6970df506803d8bd0f999ed897`](https://explorer.1am.xyz/contract/1ea71c5f099f7e929d95d54beafc349c82defc6970df506803d8bd0f999ed897)  
+**Demo Video:** [Google Drive](https://drive.google.com/file/d/1sY4jApDm1_xJDpOvHKBGxI-yN7ZRcIx0/view?usp=sharing)  
 
 ## The product idea
 
@@ -236,7 +238,7 @@ This repository contains the implementation material. The owner must still compl
 - [ ] Add a screenshot of successful compile output with circuits listed.
 - [ ] Add a screenshot of the deployed address.
 - [ ] Add a screenshot of 3 or more passing tests.
-- [ ] Add the live demo URL.
+- [x] Add the live demo URL.
 - [x] Add the one-minute demo video.
 - [ ] Add the public product profile.
 - [x] Add UI screenshots.
@@ -250,10 +252,10 @@ Contract address: 1ea71c5f099f7e929d95d54beafc349c82defc6970df506803d8bd0f999ed8
 Contract explorer: https://explorer.1am.xyz/contract/1ea71c5f099f7e929d95d54beafc349c82defc6970df506803d8bd0f999ed897
 Deployment transaction: a7028a7be4b51ec5f756363dede94512f8088239dcb436179199668ce1afa9d3
 Transaction explorer: https://explorer.1am.xyz/tx/a7028a7be4b51ec5f756363dede94512f8088239dcb436179199668ce1afa9d3?network=preprod
+Live demo: https://echoramid.netlify.app/
 Demo video: https://drive.google.com/file/d/1sY4jApDm1_xJDpOvHKBGxI-yN7ZRcIx0/view?usp=sharing
 CI/CD evidence: assets/cicd.png
 UI screenshots: assets/ui1.png, assets/ui2.png, assets/ui3.png, assets/ui4.png
-Live demo:
 Product profile:
 Compile screenshot:
 Test screenshot:
