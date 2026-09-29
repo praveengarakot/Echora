@@ -2,7 +2,7 @@ import { createContext, useCallback, useContext, useEffect, useRef, useState } f
 import '@midnight-ntwrk/dapp-connector-api';
 import type { ConnectedAPI, InitialAPI } from '@midnight-ntwrk/dapp-connector-api';
 import { createConnectedSession, type ConnectedSession } from '../lib/midnight';
-import type { MidnightNetwork } from '../config';
+import { getContractNetwork, type MidnightNetwork } from '../config';
 
 export type WalletStatus = 'checking' | 'detected' | 'not-found';
 export type WalletType = '1am' | 'lace' | 'other' | null;
@@ -71,7 +71,7 @@ export function WalletProvider({ children }: { children: React.ReactNode }) {
 
   useEffect(() => detect(), [detect]);
 
-  const connect = useCallback(async (wantedNetwork: MidnightNetwork = 'preview', walletId?: string) => {
+  const connect = useCallback(async (wantedNetwork: MidnightNetwork = getContractNetwork(), walletId?: string) => {
     if (connecting.current) return;
     connecting.current = true; setIsConnecting(true); setError(null);
     try {

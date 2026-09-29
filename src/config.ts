@@ -39,7 +39,7 @@ export const PREVIEW_CONFIG: NetworkConfig = {
 };
 
 export function getConfig(): NetworkConfig {
-  const network = process.env['MIDNIGHT_NETWORK'] ?? 'local';
+  const network = process.env['MIDNIGHT_NETWORK'] ?? 'preprod';
   if (network === 'local') return LOCAL_CONFIG;
   if (network === 'preview') return PREVIEW_CONFIG;
   if (network === 'preprod') return PREPROD_CONFIG;

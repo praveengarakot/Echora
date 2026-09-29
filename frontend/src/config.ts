@@ -26,11 +26,16 @@ export function normalizeContractAddress(value: string): string {
 export const getContractNetwork = (): MidnightNetwork => {
   if (typeof window !== 'undefined') {
     const selected = localStorage.getItem(NETWORK_KEY);
-    if (isMidnightNetwork(selected)) return selected;
+    if (isMidnightNetwork(selected)) {
+      if (import.meta.env.VITE_NETWORK_ID === 'preprod' && selected === 'preview') {
+        localStorage.setItem(NETWORK_KEY, 'preprod');
+        return 'preprod';
+      }
+      return selected;
+    }
   }
-  // Preview is the intentional development default. It is never used to
-  // reinterpret an address saved for the other network.
-  return import.meta.env.VITE_NETWORK_ID === 'preprod' ? 'preprod' : 'preview';
+  // Preprod is the intentional network default.
+  return import.meta.env.VITE_NETWORK_ID === 'preview' ? 'preview' : 'preprod';
 };
 
 export const setContractNetwork = (value: MidnightNetwork) => {
