@@ -276,6 +276,11 @@ Deployment screenshot:
 | :---: | :---: |
 | ![UI 3](assets/ui3.png) | ![UI 4](assets/ui4.png) |
 
+#### Brand Assets (X / Social Profile)
+| Profile Logo (`1:1`) | Profile Banner (`16:9`) |
+| :---: | :---: |
+| <img src="assets/echora_logo.jpg" width="280" alt="Echora Logo" /> | <img src="assets/echora_banner.jpg" width="480" alt="Echora Banner 16:9" /> |
+
 
 ## Design direction
 
