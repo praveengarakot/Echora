@@ -229,10 +229,10 @@ This repository contains the implementation material. The owner must still compl
 
 ## Owner submission checklist
 
-- [ ] Initialize the public repository.
-- [ ] Make at least 15 meaningful commits across the four levels.
-- [ ] Deploy the current generated contract to Preview or Preprod.
-- [ ] Add the deployed contract address to the **Deployment evidence** section below.
+- [x] Initialize the public repository.
+- [x] Make at least 15 meaningful commits across the four levels.
+- [x] Deploy the current generated contract to Preprod.
+- [x] Add the deployed contract address to the **Deployment evidence** section below.
 - [ ] Add a screenshot of successful compile output with circuits listed.
 - [ ] Add a screenshot of the deployed address.
 - [ ] Add a screenshot of 3 or more passing tests.
@@ -243,12 +243,12 @@ This repository contains the implementation material. The owner must still compl
 
 ## Deployment evidence
 
-Fill this section after the manual deployment:
-
 ```text
-Network: Preview / Preprod
-Contract address:
-Deployment transaction:
+Network: Preprod
+Contract address: 1ea71c5f099f7e929d95d54beafc349c82defc6970df506803d8bd0f999ed897
+Contract explorer: https://explorer.1am.xyz/contract/1ea71c5f099f7e929d95d54beafc349c82defc6970df506803d8bd0f999ed897
+Deployment transaction: a7028a7be4b51ec5f756363dede94512f8088239dcb436179199668ce1afa9d3
+Transaction explorer: https://explorer.1am.xyz/tx/a7028a7be4b51ec5f756363dede94512f8088239dcb436179199668ce1afa9d3?network=preprod
 Live demo:
 Demo video:
 Product profile:
