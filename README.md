@@ -239,7 +239,7 @@ This repository contains the implementation material. The owner must still compl
 - [x] Add the deployed contract address to the **Deployment evidence** section below.
 - [ ] Add a screenshot of successful compile output with circuits listed.
 - [ ] Add a screenshot of the deployed address.
-- [ ] Add a screenshot of 3 or more passing tests.
+- [x] Add a screenshot / log of 3 or more passing tests (12 passing tests verified).
 - [x] Add the live demo URL.
 - [x] Add the one-minute demo video.
 - [x] Add the public product profile.
@@ -260,12 +260,30 @@ Product profile: https://x.com/Echoramid
 Announcement post: https://x.com/Echoramid/status/2104976585661329837?s=20
 CI/CD evidence: assets/cicd.png
 UI screenshots: assets/ui1.png, assets/ui2.png, assets/ui3.png, assets/ui4.png
+Test suite status: 12 tests passed (2 test files, 100% pass)
+Test screenshot: assets/test.png
 Compile screenshot:
-Test screenshot:
 Deployment screenshot:
 ```
 
 ### Visual evidence & screenshots
+
+#### Verified Test Suite Execution (`npm test`)
+![Test Suite Passing](assets/test.png)
+
+```text
+> echora@1.0.0 test
+> cross-env NODE_OPTIONS='--experimental-vm-modules' vitest run
+
+ RUN  v4.1.0 D:/MOON/Echora - praveen
+
+ ✓ src/test/echo-gate.test.ts (7 tests) 263ms
+ ✓ src/test/access-flow.test.ts (5 tests) 17ms
+
+ Test Files  2 passed (2)
+      Tests  12 passed (12)
+   Duration  1.29s (transform 155ms, setup 0ms, import 334ms, tests 279ms, environment 0ms)
+```
 
 #### CI/CD Pipeline
 ![CI/CD Pipeline](assets/cicd.png)
